@@ -16,7 +16,7 @@
 // ------------------------------------------------------------------------------
 
 enum TYPEOBJECT { PLAYER, FRUIT, BOAT, BALL, WATER, ALIEN, CAR };
-enum STATEWATER { NORMAL, FREEZE };
+
 
 class Frogger : public Game
 {
@@ -38,8 +38,10 @@ private:
     Car* car3 = nullptr;
     bool keyCtrlReturn = false;      // controle do pressionamento da barra de espaço
     bool keyCtrlTime = true;               // controle do disparo do relógio. true para disparar relógio, assim ue conseguir os 4 pontos
+    bool hitMax = false;    //controla o gamtime evitar vários trabalhos no if
     Timer t; //temporizazdor
-    STATEWATER stateWater = NORMAL;
+    
+
 public:
     static Scene * scene;           // gerenciador de cena
 

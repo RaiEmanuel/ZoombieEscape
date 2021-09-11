@@ -3,20 +3,24 @@
 #define _BACKGROUND_H_
 
 // ---------------------------------------------------------------------------------
-
 #include "Types.h"                      // tipos específicos da engine
 #include "Object.h"                     // interface de Object
-#include "Sprite.h"                     // background é composto por sprites
+#include "Animation.h"
+#include "Sprite.h"
 
 // ---------------------------------------------------------------------------------
 
+enum STATEWATER { NORMAL, FREEZE };
 class Background : public Object
 {
 private:
     Sprite* bgSprite;
-
+    TileSet* tileset = nullptr;        // folha de sprites do personagem
+    Animation* anim = nullptr;         // animação do personagem
 public:
     bool activeWater = true; //se água ativa então ela pode fazer player perder quando em contato
+    STATEWATER stateWater = NORMAL;
+    
     Background(string fileName);                       // construtor
     ~Background();                      // destrutor
 

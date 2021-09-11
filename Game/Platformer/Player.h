@@ -7,11 +7,11 @@
 #include "Types.h"                      // tipos específicos da engine
 #include "Object.h"                     // interface de Object
 #include "Animation.h"                  // animação de sprites
-#include "Boat.h"                  // animação de sprites
+#include "Boat.h"                 
 
 // ------------------------------------------------------------------------------
 
-enum StatePlayer{ RUN, LOSE, CONFUSED };// estado do jogador, jogando ou perdeu e chama gameover
+enum StatePlayer{ RUN, LOSE, CONFUSED, WIN };// estado do jogador, jogando ou perdeu e chama gameover
 
 enum StateDirectionPlayer {LEFT, RIGHT, UP, DOWN};
 // ---------------------------------------------------------------------------------
@@ -29,8 +29,8 @@ private:
     bool keyCtrlRight = false;               // controle do pressionamento da barra de espaço
     bool keyCtrlReturn = false;               // controle do pressionamento da barra de espaço
     StateDirectionPlayer stateDirectionPlayer = UP;
-    int velX = 2000;
-    int velY = 2000;
+    int velX = 1000;
+    int velY = 1000;
 
 public:
     

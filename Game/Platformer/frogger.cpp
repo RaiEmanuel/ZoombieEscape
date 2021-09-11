@@ -3,6 +3,7 @@
 #include "frogger.h"
 #include "Resources.h"
 #include "GameOver.h"
+#include "Win.h"
 #include "SplashScreen.h"
 
 // -----------------------------------------------------------------------------
@@ -17,6 +18,7 @@ void Frogger::Init()
     /*  Deletar tudo no fim          */
     /* XXXXXXXXXXXXXXXXXXXXXXXXXXXX */
     // cria cena do jogo
+    /* obs: deletar tudo no destrutor*/
     scene = new Scene();
 
     //bote primeiro para ter prioridade na colisão
@@ -47,7 +49,7 @@ void Frogger::Init()
     backg = new Background("Resources/background.png");
     scene->Add(backg, STATIC);
 
-    /* obs: deletar tudo no destrutor*/
+    
 
     //maça
     fruit = new Fruit("Resources/apple.png");
@@ -62,6 +64,7 @@ void Frogger::Init()
     fruit3 = new Fruit("Resources/cabbage.png");
     scene->Add(fruit3, STATIC);
     fruit3->MoveTo(100, 400);
+    
 
     //hamburguer
     fruit4 = new Fruit("Resources/watermellon.png");
@@ -94,12 +97,6 @@ void Frogger::Init()
     car3->MoveTo(window->Width() + 0.0f, 530);
     scene->Add(car3, STATIC);
     car3->velX = -65;
-
-    
-
-
-
-
 }
 
 // ------------------------------------------------------------------------------
@@ -114,44 +111,43 @@ void Frogger::Update()
     // atualiza cena do jogo
     scene->Update();
 
-    /*if (keyCtrlReturn && window->KeyDown(VK_RETURN)) {
-        Engine::Next<GameOver>();
-        keyCtrlReturn = false;
-    }*/
-    //if (window->KeyUp(VK_RETURN)) keyCtrlReturn = true;
     //evitar acessar objeto inválido por ter mudado para nova cena (talvez mudar para última posição resolva sem if)
     if (player->statePlayer == LOSE) {
         Engine::Next<GameOver>(player->points);
+        //Engine::Next<Win>(player->points);
     }
-    else {//PLAYER RUN
+    else {//PLAYER RUN ou CONFUSED
         //player ainda jogando
-      
-        
-        if (player->points == 4) {//pegou todas as frutas
-            /* OBS: otimizar para evitar essa repetição de carregamento de sprites sempre entrando nesse if*/
+        if (player->points == 2) {//pegou todas as frutas
             if (keyCtrlTime) {
                 t.Start();
-                keyCtrlTime = false;
-                stateWater = FREEZE;
-            }
-            if (stateWater == FREEZE) {
-                backg->setSprite("Resources/bgfreeze.png");
-                backg->activeWater = false;//desativando a possibilidade de morrer em contato com a água
-                if (t.Elapsed(1.5f)) {
-                    OutputDebugString("==================[ Acabou freeezzzeeeee ]");
-                    t.Stop();
-                    stateWater = NORMAL;
-                }
+                keyCtrlTime = false;//não há mais disparos do temporizador
+                backg->stateWater = FREEZE;
+                backg->activeWater = false;
+                backg->setSprite("Resources/backgroundfreeze.png");
             }
             else {
-                backg->setSprite("Resources/background.png");
-                backg->activeWater = true;
+                if (t.Elapsed(1.5f)) {
+                    OutputDebugString("==================[ Acabou freeezzzeeeee ]");
+                    t.Reset();
+                    t.Stop();
+                    backg->stateWater = NORMAL;
+                    backg->activeWater = true;
+                    backg->setSprite("Resources/background.png");
+                }
             }
+
             
-            
-            //fica depois dos botes para preferência na colisão
-            //backg = new Background("Resources/bgfreeze.png");
-            //scene->Add(backg, STATIC);
+
+            //if (backg->stateWater == FREEZE) {
+                //backg->setSprite("Resources/bgfreeze.png");
+                //desativando a possibilidade de morrer em contato com a água
+                
+            //}
+            //else {
+             //   backg->setSprite("Resources/background.png");
+            //    backg->activeWater = true;
+            //}
         }
     }
 
