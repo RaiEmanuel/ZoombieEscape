@@ -67,8 +67,8 @@ void Player::OnCollision(Object * obj)
         //água ativa faz player perder em contato com a água
         if(bg->activeWater)
             statePlayer = LOSE;
-        else 
-            statePlayer = RUN;
+        
+            
     }
     if (obj->type == ALIEN) {
         statePlayer = LOSE;

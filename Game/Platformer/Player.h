@@ -11,7 +11,8 @@
 
 // ------------------------------------------------------------------------------
 
-enum StatePlayer{ RUN, LOSE, CONFUSED };         // estado do jogador, jogando ou perdeu e chama gameover
+enum StatePlayer{ RUN, LOSE, CONFUSED };// estado do jogador, jogando ou perdeu e chama gameover
+
 enum StateDirectionPlayer {LEFT, RIGHT, UP, DOWN};
 // ---------------------------------------------------------------------------------
 
