@@ -15,16 +15,15 @@
 // ---------------------------------------------------------------------------------
 Car::Car()
 {
-    tileset = new TileSet("Resources/carro.png", 111, 42, 1, 1);
+    tileset = new TileSet("Resources/carro.png", 100, 40, 1, 1);
     anim = new Animation(tileset, 0.120f, true);
 
     //20x20 eh bbox do player
     /*BBox(new Rect(-1 * tileset->Width() / 2.0f, -1 * tileset->Height() / 2.0f,
         tileset->Width() / 2.0f, tileset->Height() / 2.0f
     ));*/
-    BBox(new Rect(-1 * 111 / 2.0f, -1 * 42 / 2.0f,
-        111 / 2.0f, 42 / 2.0f
-    ));
+    //BBox(new Rect(-1*tileset->TileWidth()/2.0f, -1 * tileset->TileHeight() / 2.0f, tileset->TileWidth() / 2.0f, tileset->TileHeight() / 2.0f));
+    BBox(new Rect(-1*100/2.0f, -1 * 40 / 2.0f, 100 / 2.0f, 40 / 2.0f));
     type = CAR;
 }
 

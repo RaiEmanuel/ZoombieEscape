@@ -13,10 +13,11 @@
 #include "Alien.h"
 #include "Car.h"
 #include "Brain.h"
+#include "Alert.h"
 
 // ------------------------------------------------------------------------------
 
-enum TYPEOBJECT { PLAYER, FRUIT, BOAT, BALL, WATER, ALIEN, CAR, BRAIN };
+enum TYPEOBJECT { PLAYER, FRUIT, BOAT, BALL, WATER, ALIEN, CAR, BRAIN, ALERT };
 
 
 class Frogger : public Game
@@ -27,10 +28,7 @@ private:
     Fruit* fruit2 = nullptr;      // jogador
     Fruit* fruit3 = nullptr;      // jogador
     Fruit* fruit4 = nullptr;      // jogador
-    Boat* boat = nullptr;
-    Boat* boat2 = nullptr;
-    Boat* boat3 = nullptr;
-    Boat* boat4 = nullptr;
+    Boat** ppRowBoat1 = nullptr, ** ppRowBoat2 = nullptr,** ppRowBoat3 = nullptr, **ppRowBoat4 = nullptr;
     Background * backg = nullptr;
     Alien* alien = nullptr;
     Alien* alien2 = nullptr;
@@ -38,7 +36,9 @@ private:
     Car* car2 = nullptr;
     Car* car3 = nullptr;
     Brain* brain = nullptr;
-    bool keyCtrlReturn = false;      // controle do pressionamento da barra de espaço
+    Alert * alertConfused = nullptr;
+    Alert* alertFreeze = nullptr;
+    bool keyCtrlReturn = false;      // controle do pressionamento do enter
     bool keyCtrlTime = true;               // controle do disparo do relógio. true para disparar relógio, assim ue conseguir os 4 pontos
     bool hitMax = false;    //controla o gamtime evitar vários trabalhos no if
     Timer t; //temporizazdor

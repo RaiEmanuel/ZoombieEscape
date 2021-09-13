@@ -163,6 +163,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Alert.cpp" />
     <ClCompile Include="Alien.cpp" />
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Background.cpp" />
@@ -192,6 +193,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Alert.h" />
     <ClInclude Include="Alien.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Background.h" />

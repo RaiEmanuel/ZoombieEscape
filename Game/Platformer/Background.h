@@ -6,7 +6,7 @@
 #include "Types.h"                      // tipos específicos da engine
 #include "Object.h"                     // interface de Object
 #include "Animation.h"
-#include "Sprite.h"
+//#include "Sprite.h"
 
 // ---------------------------------------------------------------------------------
 

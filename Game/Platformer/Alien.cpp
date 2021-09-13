@@ -30,12 +30,8 @@ Alien::Alien(int velYAlien)
         tileset->TileWidth() / 2,
         tileset->TileHeight() / 2
         ));*/
-    BBox(new Rect(-1 * 56 / 2,
-        -1 * 56 / 2,
-        //0,
-        56 / 2,
-        56 / 2
-    ));
+    //BBox(new Rect(-1 * 56 / 2,-1 * 56 / 2,56 / 2,56 / 2));
+    BBox(new Circle(56 / 2.0f));
     type = ALIEN;
     //statePlayer = RUN;
 }

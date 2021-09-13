@@ -29,12 +29,8 @@ Player::Player()
         tileset->TileWidth() / 2,
         tileset->TileHeight() / 2
         ));*/
-        BBox(new Rect(-1 * 56 / 2,
-            -1 * 56 / 2,
-            //0,
-            56 / 2,
-            56 / 2
-            ));
+        //BBox(new Rect(-56 / 2.0f, -56/ 2.0f,56 / 2, 56 / 2 ));
+    BBox(new Circle(56 / 2.0f));
     type = PLAYER;
     //statePlayer = RUN;
 }
@@ -48,8 +44,7 @@ Player::~Player()
 }
 
 // ---------------------------------------------------------------------------------
-
-void Player::OnCollision(Object * obj)
+void Player::OnCollision(Object* obj)
 {
     if (obj->type == FRUIT) {
         Frogger::scene->Remove(obj, STATIC);
@@ -62,19 +57,16 @@ void Player::OnCollision(Object * obj)
     }
 
     if (obj->type == WATER && boat == nullptr) {
-        Background *bg = (Background*) obj;
-        
+        Background* bg = (Background*)obj;
         //água ativa faz player perder em contato com a água
-        if(bg->activeWater)
+        if (bg->activeWater)
             statePlayer = LOSE;
-        
-            
     }
     if (obj->type == ALIEN) {
         statePlayer = LOSE;
     }
 
-    if (obj->type == CAR) 
+    if (obj->type == CAR)
     {
 
         Rect* rBBox = (Rect*)obj->BBox();
@@ -82,68 +74,57 @@ void Player::OnCollision(Object * obj)
         // colisão pela esqueda
         if (x + tileset->TileWidth() <= obj->X())
         {
-            Translate(-5 * velX * gameTime, 0);
+            if (x - 5.0 * velX * gameTime > tileset->TileWidth() / 1.5f)
+            {
+                Translate(-5 * velX * gameTime, 0);
+            }
+            else
+            {
+                MoveTo(0.0f + tileset->TileWidth() / 1.9f, y);
+            }
+
         }
         else
         {
             // colisão pela direita
-            if ( obj->X()+ rBBox->right <= x)
+            if (obj->X() + rBBox->right <= x)
             {
-                Translate(5 * velX * gameTime, 0);
+                if ((x + 5.0 * velX * gameTime < window->Width() - tileset->TileWidth() / 1.5f))
+                {
+                    Translate(5 * velX * gameTime, 0);
+                }
+                else
+                {
+                    MoveTo(window->Width() - tileset->TileWidth() / 1.9f, y);
+                }
             }
             else
             {
-                
+
                 // colisão por baixo
-                if (y >= obj->Y() + rBBox->bottom)
+                if (y >= obj->Y() + rBBox->bottom && y < window->Height() - tileset->TileHeight() / 1.5f)
                 {
                     Translate(0, 2 * velX * gameTime);
                 }
                 else
                 {
                     // colisão por cima
-                    Translate(0, -2 * velX * gameTime);
+                    if (y > tileset->TileHeight() / 1.5f)
+                        Translate(0, -2 * velX * gameTime);
                 }
             }
 
         }
 
-        //if (x > tileset->TileWidth() / 1.5)
-        //{
-            
-        //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         if (statePlayer == CONFUSED)
-        {
             statePlayer = LOSE;
-        }else
-        { 
+        else
             statePlayer = CONFUSED;
-        }
-
-        
     }
 
     if (obj->type == BRAIN)
-    {
         statePlayer = WIN;
-    }
+    
 
 }
 

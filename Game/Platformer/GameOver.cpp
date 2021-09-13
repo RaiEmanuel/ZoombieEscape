@@ -57,6 +57,8 @@ void GameOver::Update()
         Engine::Next<SplashScreen>();
     }
     if (window->KeyUp(VK_RETURN)) keyCtrlReturn = true;
+
+    
 }
 
 // ------------------------------------------------------------------------------
