@@ -1,5 +1,1 @@
-﻿  frogger.cpp
-C:\Users\rai_e\Desktop\ZoombieEscape\Game\Platformer\frogger.cpp(110,34): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\rai_e\Desktop\ZoombieEscape\Game\Platformer\frogger.cpp(115,34): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\rai_e\Desktop\ZoombieEscape\Game\Platformer\frogger.cpp(120,31): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-  Platformer.vcxproj -> C:\Users\rai_e\Desktop\ZoombieEscape\Game\Debug\Platformer.exe
+﻿  Platformer.vcxproj -> C:\Users\rai_e\Desktop\ZoombieEscape\Game\Debug\Platformer.exe

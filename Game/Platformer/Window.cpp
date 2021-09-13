@@ -1,17 +1,6 @@
-/**********************************************************************************
-// Window (Código Fonte)
-// 
-// Criação:     19 Mai 2007
-// Atualização: 10 Ago 2021
-// Compilador:  Visual C++ 2019
-//
-// Descrição:   A classe abstrai todos os detalhes de configuração de
-//              uma janela para um jogo. 
-//
-**********************************************************************************/
-
 #include "Window.h"
 #include "Engine.h"
+#include "Resources.h"
 
 // -------------------------------------------------------------------------------
 // Inicialização de membros estáticos da classe
@@ -30,6 +19,8 @@ Window::Window()
     windowHeight    = GetSystemMetrics(SM_CYSCREEN);        // a janela ocupa toda a tela (tela cheia)
     windowIcon      = LoadIcon(NULL, IDI_APPLICATION);      // ícone padrão de uma aplicação
     windowCursor    = LoadCursor(NULL, IDC_ARROW);          // cursor padrão de uma aplicação
+   // windowIcon      = LoadIcon(NULL, MAKEINTRESOURCE(IDI_ICON));      // ícone padrão de uma aplicação
+   // windowCursor    = LoadCursor(NULL, MAKEINTRESOURCE(IDC_CURSOR));          // cursor padrão de uma aplicação
     windowColor     = RGB(0,0,0);                           // cor de fundo padrão é preta
     windowTitle     = string("Windows Game");               // título padrão da janela
     windowStyle     = WS_POPUP | WS_VISIBLE;                // estilo para tela cheia

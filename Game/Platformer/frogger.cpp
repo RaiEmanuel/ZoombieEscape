@@ -107,22 +107,22 @@ void Frogger::Init()
 
     //bote primeiro para ter prioridade na colisão
     car1 = new Car();
-    car1->MoveTo(window->Width() + 200, 390);
+    car1->MoveTo(window->Width() + 200.0f, 390.0f);
     scene->Add(car1, STATIC);
     car1->velX = -130;
 
     car2 = new Car();
-    car2->MoveTo(window->Width() + 300, 455);
+    car2->MoveTo(window->Width() + 300.0f, 455.0f);
     scene->Add(car2, STATIC);
     car2->velX = -100;
 
     car3 = new Car();
-    car3->MoveTo(window->Width(), 530);
+    car3->MoveTo(float(window->Width()), 530.0f);
     scene->Add(car3, STATIC);
     car3->velX = -110;
 
     brain = new Brain();
-    brain->MoveTo(window->Width()/2.0f, 42);
+    brain->MoveTo(window->Width()/2.0f, 42.0f);
     scene->Add(brain, STATIC);
 }
 
@@ -221,7 +221,9 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     engine->window->Color(150, 200, 230);
     engine->window->Title("Frogger");
     engine->window->Icon(IDI_ICON);
-    //engine->window->Cursor(IDC_CURSOR);
+    engine->window->Cursor(IDC_CURSOR);
+    //engine->window->HideCursor(true);
+    
     //engine->graphics->VSync(true);
     
     // inicia o jogo
