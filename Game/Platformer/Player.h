@@ -31,6 +31,8 @@ private:
     StateDirectionPlayer stateDirectionPlayer = UP;
     int velX = 1000;
     int velY = 1000;
+    
+    
 
 public:
     

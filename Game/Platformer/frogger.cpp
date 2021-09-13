@@ -97,6 +97,13 @@ void Frogger::Init()
     car3->MoveTo(window->Width() + 0.0f, 530);
     scene->Add(car3, STATIC);
     car3->velX = -65;
+
+    brain = new Brain();
+    brain->MoveTo(window->Width()/2.0f, 42);
+    scene->Add(brain, STATIC);
+    
+
+
 }
 
 // ------------------------------------------------------------------------------
@@ -111,6 +118,10 @@ void Frogger::Update()
     // atualiza cena do jogo
     scene->Update();
 
+    
+    
+
+
     //evitar acessar objeto inválido por ter mudado para nova cena (talvez mudar para última posição resolva sem if)
     if (player->statePlayer == LOSE) {
         Engine::Next<GameOver>(player->points);
@@ -118,37 +129,48 @@ void Frogger::Update()
     }
     else {//PLAYER RUN ou CONFUSED
         //player ainda jogando
-        if (player->points == 2) {//pegou todas as frutas
-            if (keyCtrlTime) {
-                t.Start();
-                keyCtrlTime = false;//não há mais disparos do temporizador
-                backg->stateWater = FREEZE;
-                backg->activeWater = false;
-                backg->setSprite("Resources/backgroundfreeze.png");
-            }
-            else {
-                if (t.Elapsed(1.5f)) {
-                    OutputDebugString("==================[ Acabou freeezzzeeeee ]");
-                    t.Reset();
-                    t.Stop();
-                    backg->stateWater = NORMAL;
-                    backg->activeWater = true;
-                    backg->setSprite("Resources/background.png");
-                }
-            }
-
-            
-
-            //if (backg->stateWater == FREEZE) {
-                //backg->setSprite("Resources/bgfreeze.png");
-                //desativando a possibilidade de morrer em contato com a água
-                
-            //}
-            //else {
-             //   backg->setSprite("Resources/background.png");
-            //    backg->activeWater = true;
-            //}
+        if (player->statePlayer == WIN)
+        {
+            Engine::Next<Win>(player->points);
         }
+        else
+        {
+            if (player->points == 2) {//pegou todas as frutas
+                if (keyCtrlTime) {
+                    t.Start();
+                    keyCtrlTime = false;//não há mais disparos do temporizador
+                    backg->stateWater = FREEZE;
+                    backg->activeWater = false;
+                    backg->setSprite("Resources/backgroundfreeze.png");
+                }
+                else {
+                    if (t.Elapsed(1.5f)) {
+                        OutputDebugString("==================[ Acabou freeezzzeeeee ]");
+                        t.Reset();
+                        t.Stop();
+                        backg->stateWater = NORMAL;
+                        backg->activeWater = true;
+                        backg->setSprite("Resources/background.png");
+                    }
+                }
+
+
+
+                //if (backg->stateWater == FREEZE) {
+                    //backg->setSprite("Resources/bgfreeze.png");
+                    //desativando a possibilidade de morrer em contato com a água
+
+                //}
+                //else {
+                 //   backg->setSprite("Resources/background.png");
+                //    backg->activeWater = true;
+                //}
+            }
+        }
+
+
+
+        
     }
 
     

@@ -74,9 +74,77 @@ void Player::OnCollision(Object * obj)
         statePlayer = LOSE;
     }
 
-    if (obj->type == CAR) {
-        statePlayer = CONFUSED;
+    if (obj->type == CAR) 
+    {
+
+        Rect* rBBox = (Rect*)obj->BBox();
+
+        // colisão pela esqueda
+        if (x + tileset->TileWidth() <= obj->X())
+        {
+            Translate(-5 * velX * gameTime, 0);
+        }
+        else
+        {
+            // colisão pela direita
+            if ( obj->X()+ rBBox->right <= x)
+            {
+                Translate(5 * velX * gameTime, 0);
+            }
+            else
+            {
+                
+                // colisão por baixo
+                if (y >= obj->Y() + rBBox->bottom)
+                {
+                    Translate(0, 2 * velX * gameTime);
+                }
+                else
+                {
+                    // colisão por cima
+                    Translate(0, -2 * velX * gameTime);
+                }
+            }
+
+        }
+
+        //if (x > tileset->TileWidth() / 1.5)
+        //{
+            
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        if (statePlayer == CONFUSED)
+        {
+            statePlayer = LOSE;
+        }else
+        { 
+            statePlayer = CONFUSED;
+        }
+
+        
     }
+
+    if (obj->type == BRAIN)
+    {
+        statePlayer = WIN;
+    }
+
 }
 
 // ---------------------------------------------------------------------------------
@@ -96,7 +164,10 @@ void Player::Update()
         if (keyCtrlUp && window->KeyDown(VK_UP)) {
             keyCtrlUp = false;
             stateDirectionPlayer = UP;
-            Translate(0, -velY * gameTime);
+            if (y > tileset->TileHeight() / 1.5)
+            {
+                Translate(0, -velY * gameTime);
+            }
         }
         if (window->KeyUp(VK_UP)) keyCtrlUp = true;
 
@@ -104,7 +175,11 @@ void Player::Update()
         if (keyCtrlDown && window->KeyDown(VK_DOWN)) {
             keyCtrlDown = false;
             stateDirectionPlayer = DOWN;
-            Translate(0, velY * gameTime);
+            if (y  < window->Height()-tileset->TileHeight()/1.5)
+            {
+                Translate(0, velY * gameTime);
+            }
+            
         }
         if (window->KeyUp(VK_DOWN)) keyCtrlDown = true;
 
@@ -112,7 +187,10 @@ void Player::Update()
         if (keyCtrlLeft && window->KeyDown(VK_LEFT)) {
             keyCtrlLeft = false;
             stateDirectionPlayer = LEFT;
-            Translate(-velX * gameTime, 0);
+            if (x >  tileset->TileWidth() / 1.5)
+            {
+                Translate(-velX * gameTime, 0);
+            }
         }
         if (window->KeyUp(VK_LEFT)) keyCtrlLeft = true;
 
@@ -120,7 +198,10 @@ void Player::Update()
         if (keyCtrlRight && window->KeyDown(VK_RIGHT)) {
             keyCtrlRight = false;
             stateDirectionPlayer = RIGHT;
-            Translate(velX * gameTime, 0);
+            if (x < window->Width() - tileset->TileWidth() / 1.5)
+            {
+                Translate(velX * gameTime, 0);
+            }
         }
         if (window->KeyUp(VK_RIGHT)) keyCtrlRight = true;
     }
@@ -130,7 +211,10 @@ void Player::Update()
         if (keyCtrlUp && window->KeyDown(VK_UP)) {
             keyCtrlUp = false;
             stateDirectionPlayer = DOWN;
-            Translate(0, +velY * gameTime);
+            if (y < window->Height() - tileset->TileHeight() / 1.5)
+            {
+                Translate(0, velY * gameTime);
+            }
         }
         if (window->KeyUp(VK_UP)) keyCtrlUp = true;
 
@@ -138,7 +222,10 @@ void Player::Update()
         if (keyCtrlDown && window->KeyDown(VK_DOWN)) {
             keyCtrlDown = false;
             stateDirectionPlayer = UP;
-            Translate(0, -velY * gameTime);
+            if (y > tileset->TileHeight() / 1.5)
+            {
+                Translate(0, -velY * gameTime);
+            }
         }
         if (window->KeyUp(VK_DOWN)) keyCtrlDown = true;
 
@@ -146,7 +233,10 @@ void Player::Update()
         if (keyCtrlLeft && window->KeyDown(VK_LEFT)) {
             keyCtrlLeft = false;
             stateDirectionPlayer = RIGHT;
-            Translate(+velX * gameTime, 0);
+            if (x < window->Width() - tileset->TileWidth() / 1.5)
+            {
+                Translate(velX * gameTime, 0);
+            }
         }
         if (window->KeyUp(VK_LEFT)) keyCtrlLeft = true;
 
@@ -154,7 +244,10 @@ void Player::Update()
         if (keyCtrlRight && window->KeyDown(VK_RIGHT)) {
             keyCtrlRight = false;
             stateDirectionPlayer = LEFT;
-            Translate(-velX * gameTime, 0);
+            if (x > tileset->TileWidth() / 1.5)
+            {
+                Translate(-velX * gameTime, 0);
+            }
         }
         if (window->KeyUp(VK_RIGHT)) keyCtrlRight = true;
     }

@@ -169,6 +169,7 @@
     <ClCompile Include="BackgroundGameOver.cpp" />
     <ClCompile Include="BackgroundSplashScreen.cpp" />
     <ClCompile Include="Boat.cpp" />
+    <ClCompile Include="Brain.cpp" />
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Fruit.cpp" />
@@ -197,6 +198,7 @@
     <ClInclude Include="BackgroundGameOver.h" />
     <ClInclude Include="BackgroundSplashScreen.h" />
     <ClInclude Include="Boat.h" />
+    <ClInclude Include="Brain.h" />
     <ClInclude Include="Car.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Fruit.h" />
