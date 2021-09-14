@@ -133,7 +133,7 @@ void Player::Update()
 {
     /* verifica se está colindindo com bote e desloca junto*/
     if (boat != nullptr) {
-        Translate(boat->velX, 0);
+        Translate(boat->velX * gameTime, 0);
     }
     boat = nullptr;//garante que só tem o bote se estiver colidindo
     //OutputDebugString("==================== tempo 1s");

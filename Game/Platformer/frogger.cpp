@@ -46,7 +46,7 @@ void Frogger::Init()
         /* 111111111111111111 */
         /* Alocação da primeira linha*/
         ppRowBoat1[i] = new Boat();
-        ppRowBoat1[i]->MoveTo(window->Width() + 300.0f * i, 90 + margin + 20);
+        ppRowBoat1[i]->MoveTo(window->Width() + 300.0f * i, 90 + margin + 15);//15 para ajustar jogabilidade da borda de cima
         ppRowBoat1[i]->velX = -120;
         scene->Add(ppRowBoat1[i], STATIC);
         float heightBoat1 = 90 + margin + 40 + margin;
@@ -180,7 +180,7 @@ void Frogger::Update()
 
                 }
                 else {
-                    if (t.Elapsed(5.5f)) {
+                    if (t.Elapsed(2.5f)) {
                         OutputDebugString("==================[ Acabou freeezzzeeeee ]");
                         t.Reset();
                         t.Stop();
