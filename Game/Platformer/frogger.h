@@ -28,7 +28,7 @@ private:
     Fruit* fruit2 = nullptr;      // jogador
     Fruit* fruit3 = nullptr;      // jogador
     Fruit* fruit4 = nullptr;      // jogador
-    Boat** ppRowBoat1 = nullptr, ** ppRowBoat2 = nullptr,** ppRowBoat3 = nullptr, **ppRowBoat4 = nullptr;
+    Boat** ppRowBoat1 = nullptr, ** ppRowBoat2 = nullptr,** ppRowBoat3 = nullptr, **ppRowBoat4 = nullptr, ** ppRowBoat5 = nullptr;
     Background * backg = nullptr;
     Alien* alien = nullptr;
     Alien* alien2 = nullptr;

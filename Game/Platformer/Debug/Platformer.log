@@ -1,1 +1,4 @@
-﻿  Platformer.vcxproj -> C:\Users\rai_e\Desktop\ZoombieEscape\Game\Debug\Platformer.exe
+﻿  frogger.cpp
+C:\Users\rai_e\Desktop\ZoombieEscape\Game\Platformer\frogger.cpp(49,73): warning C4244: 'argumento': conversão de 'uint' para 'float', possível perda de dados
+C:\Users\rai_e\Desktop\ZoombieEscape\Game\Platformer\frogger.cpp(52,27): warning C4244: 'inicializando': conversão de 'uint' para 'float', possível perda de dados
+  Platformer.vcxproj -> C:\Users\rai_e\Desktop\ZoombieEscape\Game\Debug\Platformer.exe

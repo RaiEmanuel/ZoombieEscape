@@ -36,39 +36,48 @@ void Frogger::Init()
     ppRowBoat2 = new Boat * [3];//cria 3 ponteiros referente a 3 barcos
     ppRowBoat3 = new Boat * [3];//cria 3 ponteiros referente a 3 barcos
     ppRowBoat4 = new Boat * [3];//cria 3 ponteiros referente a 3 barcos
+    ppRowBoat5 = new Boat * [3];//cria 3 ponteiros referente a 3 barcos
     /* OBSSS: DELETAR PONTEIRO DE PONTEIROO. PONTEIROS SIMPLES A CENA SE ENCARREGADE DE DELETAR */
     //90 é altura máxima da água
     //20 é altura do bote
     //12 é o espaço vazia de margem entre botes
+    uint margin = 6;
     for (uint i = 0; i < 3; ++i) {
         /* 111111111111111111 */
         /* Alocação da primeira linha*/
         ppRowBoat1[i] = new Boat();
-        ppRowBoat1[i]->MoveTo(window->Width() + 300.0f * i, 90 + 12 + 20);
+        ppRowBoat1[i]->MoveTo(window->Width() + 300.0f * i, 90 + margin + 20);
         ppRowBoat1[i]->velX = -120;
         scene->Add(ppRowBoat1[i], STATIC);
-        float heightBoat1 = 90 + 12 + 40 + 12;
+        float heightBoat1 = 90 + margin + 40 + margin;
         /* 222222222222222222 */
         /* Alocação da segunda  linha*/
         ppRowBoat2[i] = new Boat();
-        ppRowBoat2[i]->MoveTo(window->Width() + 300.0f * i + 50, heightBoat1 + 12 + 20);
+        ppRowBoat2[i]->MoveTo(window->Width() + 300.0f * i + 50, heightBoat1 + margin + 20);
         ppRowBoat2[i]->velX = -80;
         scene->Add(ppRowBoat2[i], STATIC);
-        float heightBoat2 = heightBoat1 + 12 + 40 + 12; 
+        float heightBoat2 = heightBoat1 + margin + 40 + margin;
         /* 3333333333333333333 */
         /* Alocação da terceira  linha*/
         ppRowBoat3[i] = new Boat();
-        ppRowBoat3[i]->MoveTo(window->Width() + 300.0f * i + 100, heightBoat2 + 12 + 20);
+        ppRowBoat3[i]->MoveTo(window->Width() + 300.0f * i + 100, heightBoat2 + margin + 20);
         ppRowBoat3[i]->velX = -100;
         scene->Add(ppRowBoat3[i], STATIC);
-        float heightBoat3 = heightBoat2 + 12 + 40 + 12; 
+        float heightBoat3 = heightBoat2 + margin + 40 + margin;
         /* 4444444444444444444 */
         /* Alocação da terceira  linha*/
         ppRowBoat4[i] = new Boat();
-        ppRowBoat4[i]->MoveTo(window->Width() + 300.0f * i + 50, heightBoat3 + 12 + 20);
+        ppRowBoat4[i]->MoveTo(window->Width() + 300.0f * i + 50, heightBoat3 + margin + 20);
         scene->Add(ppRowBoat4[i], STATIC);
         ppRowBoat4[i]->velX = -90;
-      
+        float heightBoat4 = heightBoat3 + margin + 40 + margin;
+        /* 555555555555555555555 */
+        /* Alocação da quinta linha*/
+        ppRowBoat5[i] = new Boat();
+        ppRowBoat5[i]->MoveTo(window->Width() + 300.0f * i + 50, heightBoat4 + margin + 20);
+        scene->Add(ppRowBoat5[i], STATIC);
+        ppRowBoat5[i]->velX = -100;
+        //float heightBoat4 = heightBoat4 + margin + 40 + margin;
     }
     
     /* BACKGROUND -----------------------------*/
@@ -171,7 +180,7 @@ void Frogger::Update()
 
                 }
                 else {
-                    if (t.Elapsed(1.5f)) {
+                    if (t.Elapsed(5.5f)) {
                         OutputDebugString("==================[ Acabou freeezzzeeeee ]");
                         t.Reset();
                         t.Stop();
@@ -203,6 +212,7 @@ void Frogger::Finalize()
     delete[] ppRowBoat2;
     delete[] ppRowBoat3;
     delete[] ppRowBoat4;
+    delete[] ppRowBoat5;
 }
 
 

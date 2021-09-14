@@ -13,7 +13,7 @@ RUN - jogo rodando normal
 Player::Player()
 {
     //type = TYPEOBJ
-    tileset = new TileSet("Resources/spriteSheetPlayer.png", 56, 56, 4, 4);
+    tileset = new TileSet("Resources/spriteSheetPlayer.png", 50, 50, 4, 4);
     anim = new Animation(tileset, 0.120f, true);
     uint seqLeft[1] = {1};
     uint seqRight[1] = { 2 };
@@ -23,14 +23,14 @@ Player::Player()
     anim->Add(RIGHT, seqRight, 1);
     anim->Add(DOWN, seqDown, 1);
     anim->Add(UP, seqUp, 1);
-    MoveTo(window->CenterX(), window->CenterY() + 250);
+    MoveTo(window->CenterX(), window->CenterY() + 300);
     /*BBox(new Rect(-1 * tileset->TileWidth() / 2,
         -1 * tileset->TileHeight() / 2,
         tileset->TileWidth() / 2,
         tileset->TileHeight() / 2
         ));*/
         //BBox(new Rect(-56 / 2.0f, -56/ 2.0f,56 / 2, 56 / 2 ));
-    BBox(new Circle(56 / 2.0f));
+    BBox(new Circle(50 / 2.0f));
     type = PLAYER;
     //statePlayer = RUN;
 }
@@ -68,15 +68,14 @@ void Player::OnCollision(Object* obj)
 
     if (obj->type == CAR)
     {
-
         Rect* rBBox = (Rect*)obj->BBox();
 
         // colisão pela esqueda
         if (x + tileset->TileWidth() <= obj->X())
         {
-            if (x - 5.0 * velX * gameTime > tileset->TileWidth() / 1.5f)
+            if (x - 3.0f * velX > tileset->TileWidth() / 1.5f)
             {
-                Translate(-5 * velX * gameTime, 0);
+                Translate(-3.0f * velX , 0);
             }
             else
             {
@@ -89,9 +88,9 @@ void Player::OnCollision(Object* obj)
             // colisão pela direita
             if (obj->X() + rBBox->right <= x)
             {
-                if ((x + 5.0 * velX * gameTime < window->Width() - tileset->TileWidth() / 1.5f))
+                if ((x + 3.0f * velX < window->Width() - tileset->TileWidth() / 1.5f))
                 {
-                    Translate(5 * velX * gameTime, 0);
+                    Translate(1.1f * velX, 0);
                 }
                 else
                 {
@@ -102,15 +101,16 @@ void Player::OnCollision(Object* obj)
             {
 
                 // colisão por baixo
-                if (y >= obj->Y() + rBBox->bottom && y < window->Height() - tileset->TileHeight() / 1.5f)
+                if (y >= obj->Y())
                 {
-                    Translate(0, 2 * velX * gameTime);
+
+                    Translate(0, 1.1f * velX);
                 }
                 else
                 {
                     // colisão por cima
-                    if (y > tileset->TileHeight() / 1.5f)
-                        Translate(0, -2 * velX * gameTime);
+
+                    Translate(0, -1.1f * velX );
                 }
             }
 
@@ -124,17 +124,16 @@ void Player::OnCollision(Object* obj)
 
     if (obj->type == BRAIN)
         statePlayer = WIN;
-    
+
 
 }
-
 // ---------------------------------------------------------------------------------
 
 void Player::Update()
 {
     /* verifica se está colindindo com bote e desloca junto*/
     if (boat != nullptr) {
-        Translate(boat->velX * gameTime, 0);
+        Translate(boat->velX, 0);
     }
     boat = nullptr;//garante que só tem o bote se estiver colidindo
     //OutputDebugString("==================== tempo 1s");
@@ -147,7 +146,7 @@ void Player::Update()
             stateDirectionPlayer = UP;
             if (y > tileset->TileHeight() / 1.5)
             {
-                Translate(0, -velY * gameTime);
+                Translate(0, -velY);
             }
         }
         if (window->KeyUp(VK_UP)) keyCtrlUp = true;
@@ -158,7 +157,7 @@ void Player::Update()
             stateDirectionPlayer = DOWN;
             if (y  < window->Height()-tileset->TileHeight()/1.5)
             {
-                Translate(0, velY * gameTime);
+                Translate(0, velY);
             }
             
         }
@@ -170,7 +169,7 @@ void Player::Update()
             stateDirectionPlayer = LEFT;
             if (x >  tileset->TileWidth() / 1.5)
             {
-                Translate(-velX * gameTime, 0);
+                Translate(-velX, 0);
             }
         }
         if (window->KeyUp(VK_LEFT)) keyCtrlLeft = true;
@@ -181,7 +180,7 @@ void Player::Update()
             stateDirectionPlayer = RIGHT;
             if (x < window->Width() - tileset->TileWidth() / 1.5)
             {
-                Translate(velX * gameTime, 0);
+                Translate(velX, 0);
             }
         }
         if (window->KeyUp(VK_RIGHT)) keyCtrlRight = true;
@@ -194,7 +193,7 @@ void Player::Update()
             stateDirectionPlayer = DOWN;
             if (y < window->Height() - tileset->TileHeight() / 1.5)
             {
-                Translate(0, velY * gameTime);
+                Translate(0, velY);
             }
         }
         if (window->KeyUp(VK_UP)) keyCtrlUp = true;
@@ -205,7 +204,7 @@ void Player::Update()
             stateDirectionPlayer = UP;
             if (y > tileset->TileHeight() / 1.5)
             {
-                Translate(0, -velY * gameTime);
+                Translate(0, -velY);
             }
         }
         if (window->KeyUp(VK_DOWN)) keyCtrlDown = true;
@@ -216,7 +215,7 @@ void Player::Update()
             stateDirectionPlayer = RIGHT;
             if (x < window->Width() - tileset->TileWidth() / 1.5)
             {
-                Translate(velX * gameTime, 0);
+                Translate(velX, 0);
             }
         }
         if (window->KeyUp(VK_LEFT)) keyCtrlLeft = true;
@@ -227,7 +226,7 @@ void Player::Update()
             stateDirectionPlayer = LEFT;
             if (x > tileset->TileWidth() / 1.5)
             {
-                Translate(-velX * gameTime, 0);
+                Translate(-velX, 0);
             }
         }
         if (window->KeyUp(VK_RIGHT)) keyCtrlRight = true;

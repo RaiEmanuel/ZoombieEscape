@@ -64,7 +64,7 @@ void Win::Update()
 void Win::Draw()
 {
     scene->Draw();
-    scene->DrawBBox();
+    //scene->DrawBBox();
 }
 
 // ------------------------------------------------------------------------------
