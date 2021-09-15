@@ -200,7 +200,7 @@ void Frogger::Update()
 void Frogger::Draw()
 {
     scene->Draw();
-    scene->DrawBBox();
+    //scene->DrawBBox();
 } 
 
 // ------------------------------------------------------------------------------
